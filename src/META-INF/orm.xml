@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<persistence-unit-metadata> <!-- First, global metadata -->
+		<xml-mapping-metadata-complete/> <!-- Ignore all annotations and all mapping metadata in XML files. -->
+		<persistence-unit-defaults> <!-- Some default settings -->
+			<delimited-identifiers/> <!-- Escape all SQL column, table, and other names: for example, if your SQL names are keywords (such as a “USER”). -->
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<entity class="com.p.k.entity.Guide">
+		<named-query name="findByGuide">
+			<query>
+				select g from Guide g where g.name=:name
+			</query>
+		</named-query>
+	</entity>
+	<entity class="com.p.k.Item" access="FIELD">
+		<attributes>
+			<id name="id">
+				<generated-value strategy="AUTO"/>
+			</id>
+			<basic name="name"/>
+			<basic name="auctionEnd">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>
